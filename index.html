@@ -1,0 +1,78 @@
+<!doctype html>
+
+	<head>
+		<title>旋風研究的直播</title>
+		<meta charset="utf-8">
+		<link rel="Shortcut Icon" type="image/x-icon" href="assets/pic/favicon.ico" />
+		<style>
+			.topbar{
+				width: 1000px;
+				height: 56px;
+				padding: 0px 16px;
+				  padding-top: 0px;
+				  padding-right: 16px;
+				  padding-bottom: 0px;
+				  padding-left: 16px;
+				display: flex;
+				background-color: #303030;
+			}
+			.topbar-logo{
+				width: 136px;
+				height: 56px;
+				padding: 0px;
+				  padding-top: 12px;
+				  padding-right: 0px;
+				  padding-bottom: 10px;
+				  padding-left: 0px;
+			}
+			.live-window{
+				width: auto;
+				margin: auto;
+				  margin-top: auto;
+				  margin-right: auto;
+				  margin-bottom: auto;
+				  margin-left: auto;
+			}
+			body {
+				margin-top: 0px;
+			}
+        </style>
+		<script src="flv.min.js"></script>
+    </head>
+	
+	<body>
+		<div id="container" class="topbar">
+			<a class="topbar-logo" href="http://gonetone.reh.tw"><img src="assets/pic/logo.png" width="140" height="30"></img></a>
+		</div>
+		
+		<div id="live-steam" class="live-window">
+			<video id="videoElement" width="1000" src="blob:http://mcpe.reh.tw/9d3f7900-aea4-4d53-8f8b-8f9c53fb26e5"></video>
+			<div id="buttonbar">
+				<button id="play" onclick="document.getElementById('demo').play()"></button>
+				<button id="pause" onclick="document.getElementById('demo').pause()"></button>
+				<button id="volumeUp" onclick="document.getElementById('demo').volume+=0.5"></button>
+				<button id="volumeDown" onclick="document.getElementById('demo').volume-=0.5"></button>
+				<button id="volumeOff" onclick="document.getElementById('demo').volume=0"></button>   
+			</div>
+		</div>
+		
+		<div id="other-videos" class="random-videos">
+			<frame src="livechat.html" name="chatroom" id="chatroom" title="chatroom" />
+		</div>
+		
+		<script>
+			if (flvjs.isSupported()) {
+				var videoElement = document.getElementById('videoElement');
+				var flvPlayer = flvjs.createPlayer({
+					type: 'flv',
+					"isLive": true,
+					url: 'http://gonetone.reh.tw:8000/live/STREAM_NAME.flv'
+				});
+				flvPlayer.attachMediaElement(videoElement);
+				flvPlayer.load();
+				flvPlayer.play();
+			}
+		</script>
+	</body>
+
+</html>
